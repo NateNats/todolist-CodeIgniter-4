@@ -14,9 +14,9 @@ class todoCont extends BaseController
         //this->session = \Config\Services::session();
     }
 
-    public function user2DB()
+    public function index()
     {
-        $username = $this->gePost('');
+        return view('login');
     }
 
     public function todolist()
@@ -40,6 +40,21 @@ class todoCont extends BaseController
         return view('todoView', $data);
     }
 
+    public function user2DB()
+    {
+        helper('form');
+        $model = model('userModel');
+
+        $data = [
+            'nama' => $this->request->getPost(['nama']),
+            'password' => $this->request->getPost(['password'])
+        ];
+
+        $model->save($data);
+
+        return redirect()->to('/');
+    }
+
     public function logout()
     {   
         $session = session();
@@ -58,10 +73,7 @@ class todoCont extends BaseController
         return view('createUser');
     }
 
-    public function index()
-    {
-        return view('login');
-    }
+
 
     public function authenticate()
     {
@@ -102,7 +114,7 @@ class todoCont extends BaseController
 
         $dataform = $this->request->getPost(['kegiatan']);
         $dataform['status'] = 'aktif';
-        $dataform['userid'] = $session['userid'];
+        $dataform['userid'] = $session->get('userid');
         $model->save($dataform);
 
         return $this->todolist();
@@ -130,6 +142,7 @@ class todoCont extends BaseController
 
     public function hapusKegiatan(): string
     {
+        $session = session();
         if (!$session->get('logged_in')) {
             return redirect()->to('/');
         }

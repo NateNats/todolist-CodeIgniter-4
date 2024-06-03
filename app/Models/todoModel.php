@@ -5,7 +5,7 @@
     class todoModel extends Model
     {
         protected $table = 'todolist';
-        protected $allowedFields = ['idkegiatan', 'kegiatan', 'status'];
+        protected $allowedFields = ['idkegiatan', 'kegiatan', 'status', 'userid'];
         protected $primaryKey = 'idkegiatan';
     }
 ?>
