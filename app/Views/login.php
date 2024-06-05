@@ -56,7 +56,8 @@
                 <button class="shadow bg-purple-500 text-white font-bold rounded py-2 px-4 hover:bg-purple-400 focus:shadow-outline focus:outline-none">Sign in</button>
             </div>
             <div class="md:w-2/3 text-center mt-5">
-                <span class="text-sm">Don't have an account? <a href="/createUser" class="text-blue-500">Create here...</a></span>
+                <span class="text-sm">Don't have an account?</span>
+                <span><a href="/createUser" class="text-blue-500">Create here...</a></span>
             </div>
         </div>
 
